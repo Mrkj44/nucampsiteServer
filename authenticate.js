@@ -37,6 +37,9 @@ exports.jwtPassport = passport.use(
     )
 );
 
+
+exports.verifyUser = passport.authenticate('jwt', {session: false});
+
 exports.verifyAdmin = (req, res, next) => {
     if (req.user.admin) {
         return next();
@@ -46,5 +49,3 @@ exports.verifyAdmin = (req, res, next) => {
         return next(err);
     }
 };
-
-exports.verifyUser = passport.authenticate('jwt', {session: false});

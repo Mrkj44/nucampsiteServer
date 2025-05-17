@@ -208,7 +208,7 @@ campsiteRouter.route('/:campsiteId/comments/:commentId')
         if (campsite && campsite.comments.id(req.params.commentId)) {
             const comment = campsite.comments.id(req.params.commentId);
             if (comment.author.equals(req.user._id)) { 
-                comment.deleteOne();
+                comment.remove();
                 campsite.save()
                 .then(updatedCampsite => {
                     res.statusCode = 200;
